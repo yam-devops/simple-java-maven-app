@@ -29,6 +29,6 @@ jobs:
       uses: mickem/gh-action-bump-maven-version
     - name: Print Version
       run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
-	- name: Deploy project
+    - name: Deploy project
       if: steps.bump.outputs.bumped == false
       run: mvn deploy    
