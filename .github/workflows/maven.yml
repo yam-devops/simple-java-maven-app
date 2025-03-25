@@ -43,6 +43,6 @@ jobs:
       if: steps.bump.outputs.bumped == false
       uses: docker/build-push-action@v6
       with:
-        context: "./dockerfile"
+        #context: "./dockerfile"
         push: true
         tags: infinityam1/first_repo:${{steps.bump.outputs.version}}	 
