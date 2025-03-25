@@ -22,9 +22,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
  
-    - name: Build docker image
-      run: docker build -t myapp:latest .
-
 
     - name: Bump version
       id: bump
@@ -33,12 +30,23 @@ jobs:
         snapshot: "false"
     
     - name: Print Version
-      run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
+       run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
 
-
+ 
     - name: List directory
-      run: ls -l
 
-    - name: Deploy project
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+
+    - name: build and push project to docker hub
       if: steps.bump.outputs.bumped == false
-      run: mvn deploy    
+      uses: docker/build-push-action@v6
+      with:
+        context: "./dockerfile"
+        push: true
+        tags: infinityam1/first_repo:${{steps.bump.outputs.version}}
+
+	 
