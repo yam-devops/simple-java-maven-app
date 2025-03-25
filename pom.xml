@@ -70,6 +70,21 @@
           </execution>
         </executions>
       </plugin>
+	  <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>versions-maven-plugin</artifactId>
+      <version>2.8.1</version>
+      <executions>
+        <execution>
+          <goals>
+            <goal>set</goal>
+          </goals>
+          <configuration>
+            <newVersion>1.0.${buildNumber}</newVersion> <!-- Increment the version -->
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
     </plugins>
   </build>
 </project>
