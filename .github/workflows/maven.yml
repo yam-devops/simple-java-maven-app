@@ -55,8 +55,8 @@ jobs:
         HOST: ${{ secrets.EC2_HOST }}
         USER: ec2-user
         run: |
-        echo "$PRIVATE_KEY" > ec2.pem && sudo chmod 600 ec2.pem
-        ssh -o StrictHostKeyChecking=no -i ec2.pem ${USER}@${HOST} '
-        sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        sudo docker run ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-        '
+          echo "$PRIVATE_KEY" > ec2.pem && sudo chmod 600 ec2.pem
+          ssh -o StrictHostKeyChecking=no -i ec2.pem ${USER}@${HOST} '
+          sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          sudo docker run ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+          '
