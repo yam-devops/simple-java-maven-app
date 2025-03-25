@@ -1,6 +1,7 @@
 
 
 name: Java CI with Maven
+run-name: ${{ github.actor }} custom maven build
 
 on:
   push:
