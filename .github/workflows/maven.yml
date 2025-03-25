@@ -23,7 +23,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml 
-	- name: Bump version
+	
+    - name: Bump version
       id: bump
       uses: mickem/gh-action-bump-maven-version
     - name: Print Version
