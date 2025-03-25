@@ -35,8 +35,6 @@ jobs:
     - name: Print Version
       run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
 
-    - name: List target directory
-      run: ls -l target/
 
     - name: List directory
       run: ls -l
