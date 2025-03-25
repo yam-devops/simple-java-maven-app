@@ -37,6 +37,9 @@ jobs:
     - name: List target directory
       run: ls -l target/
 
+    - name: List directory
+      run: ls -l
+
     - name: Deploy project
       if: steps.bump.outputs.bumped == false
       run: mvn deploy    
