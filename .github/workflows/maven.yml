@@ -59,4 +59,3 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i ec2.pem ${USER}@${HOST} '
         sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         sudo docker run infinityam1/first_repo:${{steps.bump.outputs.version}}'
-        '
