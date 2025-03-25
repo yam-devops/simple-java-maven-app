@@ -30,7 +30,7 @@ jobs:
         snapshot: "false"
 
     - name: Print Version
-       run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
+      run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
 
 
     - name: Login to Docker Hub
