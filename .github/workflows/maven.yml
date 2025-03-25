@@ -45,6 +45,4 @@ jobs:
       with:
         context: "./dockerfile"
         push: true
-        tags: infinityam1/first_repo:${{steps.bump.outputs.version}}
-
-	 
+        tags: infinityam1/first_repo:${{steps.bump.outputs.version}}	 
