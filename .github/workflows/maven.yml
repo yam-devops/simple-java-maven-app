@@ -49,6 +49,18 @@ jobs:
         scan-ref: "./dockerfile"
         exit-code: "1"
 
+
+  
+    # - name: SonarCloud Scan
+    #   if: github.event_name == 'pull_request'
+    #   uses: sonarsource/sonarcloud-github-action@master
+    #   env:
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #   with:
+    #     args: >
+    #         -Dsonar.organization=my-org
+    #         -Dsonar.projectKey=my-project
+    
     - name: display
       run: ls -l
 
