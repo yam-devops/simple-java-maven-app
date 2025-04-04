@@ -82,5 +82,11 @@ jobs:
       uses: sigstore/cosign-installer@main
 
     - name: Cosign Sign
+      env:
+       COSIGN_EXPERIMENTAL: "1"
       run: |
         cosign sign --yes infinityam1/first_repo:java 
+    
+    - name: Cosign Verify
+      run: |
+        cosign verify infinityam1/first_repo:java 
