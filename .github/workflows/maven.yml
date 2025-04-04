@@ -24,7 +24,6 @@ jobs:
  
     - name: Run GitLeaks
       uses: gitleaks/gitleaks-action@v2
-      continue-on-error: true
       
     - name: Check for Leaks
       run: |
