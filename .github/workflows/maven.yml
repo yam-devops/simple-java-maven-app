@@ -22,15 +22,19 @@ jobs:
         distribution: 'temurin'
         cache: maven
  
+    - name: Run GitLeaks
+      uses: gitleaks/gitleaks-action@v2
+      continue-on-error: true
+      
+    - name: Check for Leaks
+      run: |
+        if grep -q 'Secret detected' gitleaks-report.json; then
+          echo "❌ Secrets detected! Please remove them before pushing."
+          exit 1
+        else
+          echo "✅ No secrets found."
+        fi
 
-    - name: Bump version
-      id: bump
-      uses: nnichols/maven-version-bump-action@v3
-      with:
-        snapshot: "false"
-
-    - name: Print Version
-      run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
 
     - name: display
       run: ls -l
@@ -49,13 +53,3 @@ jobs:
         push: true
         tags: infinityam1/first_repo:${{steps.bump.outputs.version}}	 
     
-    - name: Deploy to EC2
-      env:
-        PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-        HOST: ${{ secrets.EC2_HOST }}
-        USER: ec2-user
-      run: |
-        echo "$PRIVATE_KEY" > ec2.pem && sudo chmod 600 ec2.pem
-        ssh -o StrictHostKeyChecking=no -i ec2.pem ${USER}@${HOST} '
-        sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        sudo docker run infinityam1/first_repo:${{steps.bump.outputs.version}}'
