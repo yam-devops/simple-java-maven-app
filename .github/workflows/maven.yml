@@ -76,7 +76,7 @@ jobs:
         context: .
         file: ./dockerfile
         push: true
-        tags: infinityam1/first_repo:${{ github.sha }}
+        tags: infinityam1/first_repo:test
 
     - name: Sign Image with Cosign
       uses: sigstore/cosign-installer@main
@@ -88,8 +88,8 @@ jobs:
 
     - name: Cosign Sign
       run: |
-        cosign sign --yes --key cosign.key infinityam1/first_repo:${{ github.sha }}
+        cosign sign --yes --key cosign.key infinityam1/first_repo:test
     
     - name: Cosign Verify
       run: |
-        cosign verify --key cosign.pub infinityam1/first_repo:${{ github.sha }}
+        cosign verify --key cosign.pub infinityam1/first_repo:test
