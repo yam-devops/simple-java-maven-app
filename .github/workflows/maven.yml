@@ -95,8 +95,8 @@ jobs:
 
     - name: Cosign Sign
       run: |
-        cosign sign --yes --key cosign.key infinityam1/first_repo@${{ env.IMAGE_DIGEST }}
+        cosign sign --yes --key cosign.key infinityam1/first_repo:test@${{ env.IMAGE_DIGEST }}
     
     - name: Cosign Verify
       run: |
-        cosign verify --key cosign.pub infinityam1/first_repo@${{ env.IMAGE_DIGEST }}
+        cosign verify --key cosign.pub infinityam1/first_repo:test@${{ env.IMAGE_DIGEST }}
