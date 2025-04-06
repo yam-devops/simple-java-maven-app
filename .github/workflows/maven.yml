@@ -88,7 +88,7 @@ jobs:
 
     - name: Cosign Sign
       run: |
-        cosign sign --key cosign.key infinityam1/first_repo:java 
+        cosign sign --yes --key cosign.key infinityam1/first_repo:java 
     
     - name: Cosign Verify
       run: |
