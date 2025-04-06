@@ -99,4 +99,5 @@ jobs:
     
     - name: Cosign Verify
       run: |
+        echo "335" > cosign.pub
         cosign verify --key cosign.pub infinityam1/first_repo:test
