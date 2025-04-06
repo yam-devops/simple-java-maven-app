@@ -81,12 +81,15 @@ jobs:
     - name: Sign Image with Cosign
       uses: sigstore/cosign-installer@main
 
-    - name: Cosign Sign
-      env:
-       COSIGN_EXPERIMENTAL: "1"
+    - name: Generate Cosign Key Pair
       run: |
-        cosign sign --yes infinityam1/first_repo:java 
+        cosign generate-key-pair
+        ls -l cosign.*
+
+    - name: Cosign Sign
+      run: |
+        cosign sign --key cosign.key infinityam1/first_repo:java 
     
     - name: Cosign Verify
       run: |
-        cosign verify infinityam1/first_repo:java 
+        cosign verify --key cosign.pub infinityam1/first_repo:java 
