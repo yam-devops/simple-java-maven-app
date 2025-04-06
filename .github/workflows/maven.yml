@@ -81,7 +81,7 @@ jobs:
 
     - name: Extract Digest
       run: |
-        IMAGE=${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}:java
+        IMAGE=${{ secrets.DOCKER_USERNAME }}/first_repo:test
         DIGEST=$(docker buildx imagetools inspect $IMAGE --raw | jq -r '.manifests[0].digest')
         echo "IMAGE_DIGEST=$DIGEST" >> $GITHUB_ENV
 
